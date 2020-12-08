@@ -1221,7 +1221,7 @@ function validate(p) {
         p.iyr && p.iyr.length == 4 && 2010 <= parseInt(p.iyr) && parseInt(p.iyr) <= 2020,
         p.eyr && p.eyr.length == 4 && 2020 <= parseInt(p.eyr) && parseInt(p.eyr) <= 2030,
         (p.hgt && p.hgt.endsWith('cm') && 150 <= parseInt(p.hgt) && parseInt(p.hgt) <= 193)
-        || (p.hgt && p.hgt.endsWith('in') && 59 <= parseInt(p.hgt) && parseInt(p.hgt) <= 76),
+            || (p.hgt && p.hgt.endsWith('in') && 59 <= parseInt(p.hgt) && parseInt(p.hgt) <= 76),
         p.hcl && p.hcl.match(/^#[a-f0-9]{6}$/),
         p.ecl && p.ecl.match(/^(amb|blu|brn|gry|grn|hzl|oth)$/),
         p.pid && p.pid.match(/^[0-9]{9}$/),
