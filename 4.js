@@ -1216,16 +1216,16 @@ function parse(ps) {
 console.log(parse(input).filter(p => Object.keys(p).length === 8 || (Object.keys(p).length === 7 && !p['cid'])).length)
 
 function validate(p) {
-    const byr = p.byr && p.byr.length == 4 && 1920 <= parseInt(p.byr) && parseInt(p.byr) <= 2002
-    const iyr = p.iyr && p.iyr.length == 4 && 2010 <= parseInt(p.iyr) && parseInt(p.iyr) <= 2020
-    const eyr = p.eyr && p.eyr.length == 4 && 2020 <= parseInt(p.eyr) && parseInt(p.eyr) <= 2030
-    const hgt = (p.hgt && p.hgt.endsWith('cm') && 150 <= parseInt(p.hgt) && parseInt(p.hgt) <= 193)
-        || (p.hgt && p.hgt.endsWith('in') && 59 <= parseInt(p.hgt) && parseInt(p.hgt) <= 76)
-    const hcl = p.hcl && p.hcl.match(/^#[a-f0-9]{6}$/)
-    const ecl = p.ecl && p.ecl.match(/^(amb|blu|brn|gry|grn|hzl|oth)$/)
-    const pid = p.pid && p.pid.match(/^[0-9]{9}$/)
-    const valid = byr && iyr && eyr && hgt && hcl && ecl && pid
-    return valid
+    return [
+        p.byr && p.byr.length == 4 && 1920 <= parseInt(p.byr) && parseInt(p.byr) <= 2002,
+        p.iyr && p.iyr.length == 4 && 2010 <= parseInt(p.iyr) && parseInt(p.iyr) <= 2020,
+        p.eyr && p.eyr.length == 4 && 2020 <= parseInt(p.eyr) && parseInt(p.eyr) <= 2030,
+        (p.hgt && p.hgt.endsWith('cm') && 150 <= parseInt(p.hgt) && parseInt(p.hgt) <= 193)
+        || (p.hgt && p.hgt.endsWith('in') && 59 <= parseInt(p.hgt) && parseInt(p.hgt) <= 76),
+        p.hcl && p.hcl.match(/^#[a-f0-9]{6}$/),
+        p.ecl && p.ecl.match(/^(amb|blu|brn|gry|grn|hzl|oth)$/),
+        p.pid && p.pid.match(/^[0-9]{9}$/),
+    ].every(check => check)
 }
 // console.log(parse(valid).filter(validate).length)
 // console.log(parse(invalid).filter(validate).length)
