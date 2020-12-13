@@ -141,6 +141,20 @@ test2 = `
 10
 3
 `
+test3 = `
+1
+4
+5
+6
+7
+8
+11
+12
+15
+16
+17
+20
+`
 
 const parse = (jolts) => {
     const j = jolts.trim().split('\n').map(x=>parseInt(x))
@@ -173,6 +187,8 @@ function trib(n) {
 }
 
 function getCombos(jolts) {
+    jolts.unshift(0)
+    jolts.push(jolts[jolts.length - 1] + 3)
     let combos = 1
     let chain = 1
     for (let i = 0; i < jolts.length; i++) {
@@ -186,5 +202,6 @@ function getCombos(jolts) {
     return combos
 }
 
-console.log(getCombos(parse(test)))
-console.log(getCombos(parse(test2)))
+// console.log(getCombos(parse(test)))
+// console.log(getCombos(parse(test2)))
+console.log(getCombos(parse(input)))
